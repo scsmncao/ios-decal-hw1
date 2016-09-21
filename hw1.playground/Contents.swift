@@ -22,11 +22,13 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: They are not because the values passed in are optionals and those set in the instance
+//: variables are Strings. However, in this instance, we don't need to unwrap the optional
+//: because we pass in Strings.
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,18 +37,23 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: The for loop is fine. However, we need to make the function class since we are
+//: calling the function without an instance to the object and instead, we're using
+//: it like a class method. Static would also work. I also added a return true at the
+//: end since it needed to return a boolean and also it's true if it doesn't hit the
+//: false statement
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
+    func isAnagram() -> Bool {
+        var countLetters = [Character : Int]() //Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
         
@@ -81,7 +88,7 @@ class Words {
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,7 +96,10 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: We never initialized the dictionary in Line X and so we could have errored out with
+//: with uninitialized error during runtime. We also had to make the function a instance
+//: method and not a class one. I also changed the last return to return true instead of
+//: nil since the method needs to return a boolean.
     
     
 }
